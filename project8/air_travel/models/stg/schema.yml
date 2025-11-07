@@ -1,0 +1,64 @@
+
+version: 2
+
+sources:
+  - name: air_travel_raw
+    database: cs378-fa2025
+    schema: air_travel_raw  
+    tables:
+      - name: aircrafts
+      - name: airlines
+      - name: airport_maps
+      - name: airport_reviews
+      - name: airports
+      - name: countries
+      - name: flight_delays
+      - name: flight_routes	
+      - name: tsa_traffic
+
+models:
+  - name: aircrafts
+    tests:
+      - check_row_count_equals:
+          arguments:
+            raw_table: source('air_travel_raw', 'aircrafts')
+  - name: airlines
+    tests:
+      - check_row_count_equals:
+          arguments:
+            raw_table: source('air_travel_raw', 'airlines')
+  - name: airport_maps
+    tests:
+      - check_row_count_equals:
+          arguments:
+            raw_table: source('air_travel_raw', 'airport_maps')
+  - name: airport_reviews
+    tests:
+      - check_row_count_equals:
+          arguments:
+            raw_table: source('air_travel_raw', 'airport_reviews')
+  - name: airports
+    tests:
+      - check_row_count_equals:
+          arguments:
+            raw_table: source('air_travel_raw', 'airports')
+  - name: countries
+    tests:
+      - check_row_count_equals:
+          arguments:
+            raw_table: source('air_travel_raw', 'countries')
+  - name: flight_delays
+    tests:
+      - check_row_count_equals:
+          arguments:
+            raw_table: source('air_travel_raw', 'flight_delays')
+  - name: flight_routes
+    tests:
+      - check_row_count_equals:
+          arguments:
+            raw_table: source('air_travel_raw', 'flight_routes')
+  - name: tsa_traffic
+    tests:
+      - check_row_count_equals:
+          arguments:
+            raw_table: source('air_travel_raw', 'tsa_traffic')
