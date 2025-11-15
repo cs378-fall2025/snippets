@@ -1,0 +1,51 @@
+{
+    "path_count": 174,
+    "parsed_path_count": 174,
+    "static_analysis_path_count": 9,
+    "static_analysis_parsed_path_count": 9,
+    "is_partial_parse_enabled": false,
+    "is_static_analysis_enabled": true,
+    "read_files_elapsed": 0.007034499998553656,
+    "load_macros_elapsed": 0.21363949999795295,
+    "parse_project_elapsed": 0.2378626669960795,
+    "patch_sources_elapsed": 0.007392208004603162,
+    "process_manifest_elapsed": 0.012595500011229888,
+    "load_all_elapsed": 0.5021214160078671,
+    "projects": [
+        {
+            "project_name": "air_travel",
+            "elapsed": 0.23547120900184382,
+            "parsers": [
+                {
+                    "parser": "model",
+                    "elapsed": 0.07008616600069217,
+                    "parsed_path_count": 9
+                },
+                {
+                    "parser": "test",
+                    "elapsed": 0.1641316250024829,
+                    "parsed_path_count": 1
+                }
+            ],
+            "parsed_path_count": 10
+        },
+        {
+            "project_name": "dbt_bigquery",
+            "elapsed": 0.0011270840041106567,
+            "parsers": [],
+            "parsed_path_count": 0
+        },
+        {
+            "project_name": "dbt",
+            "elapsed": 0.00120733400399331,
+            "parsers": [
+                {
+                    "parser": "doc",
+                    "elapsed": 8.479099778924137e-05,
+                    "parsed_path_count": 1
+                }
+            ],
+            "parsed_path_count": 1
+        }
+    ]
+}
