@@ -13,6 +13,7 @@ with stg_flight_delays as (
             safe_cast(arr_cancelled as INTEGER) as arr_cancelled,
             safe_cast(arr_diverted as INTEGER) as arr_diverted, 
             safe_cast(arr_delay as INTEGER) as arr_delay_min,
+            safe_cast(carrier_delay as INTEGER) as carrier_delay_min, 
             safe_cast(weather_delay as INTEGER) as weather_delay_min, 
             safe_cast(nas_delay as INTEGER) as nas_delay_min,
             safe_cast(late_aircraft_delay as INTEGER) as late_aircraft_delay_min, 
