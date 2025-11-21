@@ -1,0 +1,164 @@
+version: 2
+
+models:
+  - name: Aircraft
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments: 
+            combination_of_columns:
+              - icao
+              - iata
+              - name
+  - name: Airline
+    columns:
+      - name: id
+        data_tests:
+          - unique
+          - not_null
+      - name: country_code
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Country')
+                field: iso_code
+  - name: Airport
+    columns:
+      - name: icao
+        data_tests:
+          - unique
+          - not_null
+      - name: country_code
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Country')
+                field: iso_code
+  - name: Airport_Concessions
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments: 
+            combination_of_columns:
+              - airport_icao
+              - terminal
+              - business
+              - location
+    columns:
+      - name: airport_icao
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Airport')
+                field: icao
+  - name: Airport_Establishment
+    columns:
+      - name: business
+        data_tests:
+          - unique
+          - not_null
+  - name: Airport_Review
+    columns:
+      - name: id
+        data_tests:
+          - unique
+          - not_null
+      - name: airport_icao
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Airport')
+                field: icao  
+  - name: Country
+    columns:
+      - name: iso_code
+        data_tests:
+          - unique
+          - not_null
+  - name: Flight_Delays
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments: 
+            combination_of_columns:
+              - event_month
+              - airline_id
+              - airport_icao
+    columns:
+      - name: airline_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Airline')
+                field: id  
+      - name: airport_icao
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Airport')
+                field: icao  
+  - name: Flight_Routes
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments: 
+            combination_of_columns:
+              - airline_id
+              - source_airport_icao
+              - dest_airport_icao
+    columns:
+      - name: airline_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Airline')
+                field: id  
+      - name: source_airport_icao
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Airport')
+                field: icao
+      - name: dest_airport_icao
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Airport')
+                field: icao    
+  - name: Food_Beverage
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments: 
+            combination_of_columns:
+              - business
+              - menu_item
+    columns:
+      - name: business
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Airport_Establishment')
+                field: business   
+  - name: Route_Equipment
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments: 
+            combination_of_columns:
+              - airline_id
+              - source_airport_icao
+              - dest_airport_icao
+              - icao_equipment
+  - name: TSA_Traffic
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments: 
+            combination_of_columns:
+              - event_date
+              - event_hour
+              - airport_icao
+              - security_checkpoint
+    columns:
+      - name: airport_icao
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Airport')
+                field: icao  
+
+

@@ -1,0 +1,24 @@
+
+  
+    
+
+    create or replace table `cs378-fa2025`.`dbt_air_travel_stg`.`aircrafts`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      with stg_aircrafts as (
+    select aircraft_name as name,
+        case iata_code when '\\N' then null else iata_code end as iata,
+        case icao_code when '\\N' then null else icao_code end as icao,
+        _data_source,
+        _load_time
+  from `cs378-fa2025`.`air_travel_raw`.`aircrafts`
+)
+
+select * from stg_aircrafts
+    );
+  
