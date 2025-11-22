@@ -21,7 +21,9 @@
 
 select distinct re.airline_id, re.source_airport_icao, re.dest_airport_icao,
     a.icao as icao_equipment, re._data_source, re._load_time
-from Route_Equipment re join air_travel_int.Aircraft a
+from Route_Equipment re join `cs378-fa2025`.`dbt_air_travel_int`.`Aircraft` a
 on re.equipment = a.iata
+join `cs378-fa2025`.`dbt_air_travel_int`.`Airline` al 
+on re.airline_id = al.id
     );
   

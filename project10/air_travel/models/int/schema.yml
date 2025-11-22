@@ -144,6 +144,31 @@ models:
               - source_airport_icao
               - dest_airport_icao
               - icao_equipment
+    columns:
+      - name: airline_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Airline')
+                field: id
+      - name: source_airport_icao
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Airport')
+                field: icao
+      - name: dest_airport_icao
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Airport')
+                field: icao
+      - name: icao_equipment
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('Aircraft')
+                field: icao            
   - name: TSA_Traffic
     data_tests:
       - dbt_utils.unique_combination_of_columns:
