@@ -3,7 +3,7 @@ with Airport_Concessions as (
   from {{ ref('airport_maps') }} m join {{ ref('Airport') }} a
   on upper(m.airport) = a.iata
   where a.country_code = 'US'
-  and m.business not in
+  and m.business in
     (select business from {{ ref('Airport_Establishment') }})
   order by m.business
 )
